@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>For Andrea 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --rose:#e8a0b0;--rose-deep:#c45c78;--rose-soft:#f5d0da;
+  --blush:#fdf0f4;--cream:#fdf8f5;--beige:#f5efe6;--beige-mid:#e8ddd0;
+  --beige-warm:#ddd0be;--linen:#f9f4ee;--ivory:#fefcf8;
+  --mauve:#a06878;--gold:#c8a96e;--gold-deep:#a88040;--gold-light:#f0e4cc;
+  --text:#3d2030;--text-soft:#9a7080;--text-light:#c4a0b0;
+}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text)}
+
+/* ── PETAL LAYER ── */
+#petal-layer{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden}
+.petal{position:absolute;top:-30px;border-radius:50% 0 50% 0;opacity:0;animation:petal-fall linear infinite}
+@keyframes petal-fall{0%{opacity:0;transform:translateY(-30px) rotate(0deg)}8%{opacity:.55}92%{opacity:.28}100%{opacity:0;transform:translateY(110vh) rotate(720deg) translateX(25px)}}
+
+/* ── VINE LAYER ── */
+#vine-layer{position:fixed;inset:0;pointer-events:none;z-index:3;overflow:hidden}
+
+/* ── AMBIENT LAYER ── */
+#ambient-layer{position:fixed;inset:0;pointer-events:none;z-index:4;overflow:hidden}
+.amb-float{position:absolute;font-size:14px;opacity:0;animation:amb-drift linear infinite}
+@keyframes amb-drift{0%{opacity:0;transform:translateY(0) rotate(0deg)}10%{opacity:.35}80%{opacity:.25}100%{opacity:0;transform:translateY(-80px) rotate(20deg)}}
+
+/* ── MUSIC BTN ── */
+#music-btn{
+  position:fixed;bottom:24px;right:20px;width:46px;height:46px;border-radius:50%;
+  background:rgba(254,252,248,.92);border:1px solid var(--beige-mid);
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+  cursor:pointer;z-index:1000;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 2px 18px rgba(100,70,50,.1);transition:transform .2s;user-select:none
+}
+#music-btn:active{transform:scale(.88)}
+#music-btn.playing{animation:music-pulse 2.2s ease-in-out infinite}
+#music-btn.muted{position:fixed}
+#music-btn.muted::after{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  background:linear-gradient(135deg,transparent 42%,var(--rose-deep) 42%,var(--rose-deep) 56%,transparent 56%);
+  pointer-events:none
+}
+@keyframes music-pulse{0%,100%{box-shadow:0 2px 18px rgba(196,92,120,.12)}50%{box-shadow:0 2px 30px rgba(196,92,120,.38)}}
+
+/* ── CHAPTERS ── */
+#chapters{position:fixed;inset:0;z-index:10}
+.chapter{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:52px 24px 88px;
+  opacity:0;pointer-events:none;transition:opacity .6s ease;
+  overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch
+}
+.chapter.active{opacity:1;pointer-events:all}
+
+/* ── TRANSITION ── */
+#transition-overlay{
+  position:fixed;inset:0;z-index:900;background:var(--ivory);
+  opacity:0;pointer-events:none;transition:opacity .32s ease
+}
+#transition-overlay.show{opacity:1;pointer-events:all}
+
+@keyframes fade-up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes hint-pulse{0%,100%{opacity:.38}50%{opacity:1}}
+
+/* ════════════════════════
+   CH1 OPENING
+════════════════════════ */
+#ch1{background:linear-gradient(155deg,#fce8ee 0%,#fdf8f5 48%,#f5efe6 100%)}
+.opening-eyebrow{font-size:11px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--text-light);margin-bottom:28px;opacity:0;animation:fade-up 1s .3s forwards}
+.opening-name{font-family:'Cormorant Garamond',serif;font-size:clamp(60px,15vw,96px);font-weight:300;font-style:italic;line-height:1;color:var(--text);margin-bottom:14px;opacity:0;animation:fade-up 1s .6s forwards}
+.opening-name span{color:var(--rose-deep)}
+.opening-line{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,3.8vw,21px);font-weight:300;font-style:italic;color:var(--text-soft);margin-bottom:52px;letter-spacing:.3px;text-align:center;line-height:1.8;opacity:0;animation:fade-up 1s .9s forwards}
+.btn-primary{
+  background:var(--rose-deep);color:white;border:none;border-radius:60px;
+  padding:18px 52px;font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;
+  cursor:pointer;box-shadow:0 4px 28px rgba(196,92,120,.28);
+  transition:transform .15s,box-shadow .15s;user-select:none;
+  opacity:0;animation:fade-up 1s 1.2s forwards
+}
+.btn-primary:active{transform:scale(.95)}
+
+/* ════════════════════════
+   CH2 LOCK
+════════════════════════ */
+#ch2{background:linear-gradient(155deg,var(--linen) 0%,var(--beige) 50%,#fce8ee 100%)}
+.lock-card{
+  background:var(--ivory);border:1px solid var(--beige-mid);border-radius:28px;
+  padding:44px 36px;max-width:340px;width:100%;
+  box-shadow:0 8px 48px rgba(100,70,50,.08);
+  display:flex;flex-direction:column;align-items:center
+}
+.lock-title{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,6vw,34px);font-weight:300;font-style:italic;color:var(--text);text-align:center;margin-bottom:6px}
+.lock-sub{font-size:13px;font-weight:300;color:var(--text-soft);text-align:center;margin-bottom:32px}
+.lock-icon-wrap{font-size:52px;margin-bottom:18px;transition:transform .3s;display:block;text-align:center}
+.lock-display{display:flex;gap:14px;justify-content:center;margin-bottom:28px}
+.lock-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--beige-mid);background:transparent;transition:all .22s}
+.lock-dot.filled{background:var(--rose-deep);border-color:var(--rose-deep);transform:scale(1.18)}
+.pin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:268px;width:100%}
+.pin-btn{
+  background:var(--linen);border:1px solid var(--beige-mid);border-radius:16px;
+  padding:16px;font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--text);
+  cursor:pointer;transition:all .1s;position:relative;overflow:hidden;user-select:none;
+  box-shadow:0 2px 8px rgba(100,70,50,.05)
+}
+.pin-btn:active{transform:scale(.9);background:var(--beige)}
+.pin-ripple{position:absolute;border-radius:50%;background:rgba(196,92,120,.18);transform:scale(0);animation:ripple .5s linear;pointer-events:none}
+@keyframes ripple{to{transform:scale(4);opacity:0}}
+.pin-delete{background:transparent;border:1px solid var(--beige-mid);border-radius:16px;padding:16px;font-size:18px;color:var(--text-soft);cursor:pointer;transition:all .1s;user-select:none}
+.pin-delete:active{transform:scale(.9)}
+.pin-spacer{background:transparent;border:none}
+.lock-message{margin-top:16px;font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--rose-deep);text-align:center;min-height:22px}
+@keyframes lock-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px)}40%{transform:translateX(9px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+@keyframes lock-unlock{0%{transform:scale(1) rotate(0deg)}35%{transform:scale(1.28) rotate(-14deg)}65%{transform:scale(1.22) rotate(7deg)}100%{transform:scale(1) rotate(0deg)}}
+
+/* ════════════════════════
+   STORY
+════════════════════════ */
+#ch-story{background:linear-gradient(155deg,var(--linen) 0%,#fdf8f5 50%,#fce8ee 100%);justify-content:flex-start;padding-top:58px}
+.chapter-progress{position:fixed;top:18px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:100}
+.prog-dot{width:7px;height:7px;border-radius:50%;background:var(--beige-mid);transition:all .35s}
+.prog-dot.done{background:var(--rose)}.prog-dot.active{background:var(--rose-deep);transform:scale(1.5)}
+.story-card{
+  background:var(--ivory);border:1px solid var(--beige-mid);border-radius:28px;
+  padding:40px 32px;max-width:480px;width:100%;
+  box-shadow:0 8px 40px rgba(100,70,50,.07);position:relative;overflow:hidden
+}
+.story-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--beige-mid),var(--rose-deep),var(--rose-soft),var(--gold),var(--beige-mid))}
+.card-icon{font-size:34px;margin-bottom:18px;display:block}
+.card-num{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:11px;display:block}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:clamp(21px,5.2vw,29px);font-weight:300;font-style:italic;color:var(--text);margin-bottom:17px;line-height:1.3}
+.card-body{font-size:14.5px;font-weight:300;color:var(--text-soft);line-height:1.88}
+.card-body em{color:var(--rose-deep);font-style:italic}
+.card-counter{position:absolute;bottom:16px;right:22px;font-size:11px;font-weight:300;color:var(--text-light);letter-spacing:1px}
+.btn-next{
+  margin-top:26px;display:inline-flex;align-items:center;gap:9px;
+  background:var(--beige);border:1px solid var(--beige-mid);border-radius:50px;
+  padding:13px 26px;font-size:13.5px;color:var(--text);cursor:pointer;
+  transition:all .14s;user-select:none
+}
+.btn-next:active{transform:scale(.96);background:var(--beige-warm)}
+.btn-next .arr{transition:transform .18s}
+.btn-next:active .arr{transform:translateX(4px)}
+.eiffel-img{width:100%;border-radius:14px;margin:18px 0;height:165px;position:relative;overflow:hidden;background:linear-gradient(160deg,#0d0820,#1e1040 35%,#6b3f7e 65%,#e8854a 85%,#ffd700)}
+
+/* ════════════════════════
+   TRAITS — one at a time, growing
+════════════════════════ */
+#ch-traits{background:linear-gradient(155deg,var(--beige) 0%,var(--cream) 50%,var(--linen) 100%);cursor:pointer;user-select:none;overflow:hidden}
+.traits-intro{font-family:'Cormorant Garamond',serif;font-size:clamp(19px,4.8vw,27px);font-weight:300;font-style:italic;color:var(--text-soft);text-align:center;max-width:300px;line-height:1.6;opacity:0;transition:opacity .8s;pointer-events:none;padding:0 24px}
+.traits-intro.show{opacity:1}
+.trait-tap-hint{font-size:11px;font-weight:300;color:var(--text-light);letter-spacing:3px;text-transform:uppercase;text-align:center;animation:hint-pulse 2.2s ease-in-out infinite;pointer-events:none;margin-top:20px}
+
+/* Single trait shown at a time, center screen */
+.trait-stage{
+  position:fixed;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:32px;pointer-events:none;z-index:50
+}
+.trait-single{
+  font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--text);
+  text-align:center;line-height:1.45;
+  opacity:0;transform:scale(0.82);
+  transition:opacity .45s ease,transform .45s cubic-bezier(0.34,1.4,0.64,1);
+  max-width:min(380px,88vw);
+  background:var(--ivory);
+  border:1px solid var(--beige-mid);
+  border-radius:22px;
+  box-shadow:0 6px 28px rgba(100,70,50,.08);
+  padding:20px 28px;
+}
+.trait-single.show{opacity:1;transform:scale(1)}
+.trait-single.hide{opacity:0;transform:scale(1.06)}
+.trait-single.size-xs{font-size:clamp(14px,3.5vw,16px)}
+.trait-single.size-sm{font-size:clamp(16px,4vw,19px)}
+.trait-single.size-md{font-size:clamp(19px,4.8vw,23px)}
+.trait-single.size-lg{font-size:clamp(23px,5.8vw,28px)}
+.trait-single.size-xl{font-size:clamp(26px,6.5vw,34px)}
+
+.trait-final{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(249,244,238,.97);padding:32px;opacity:0;pointer-events:none;z-index:60;transition:opacity .6s;text-align:center}
+.trait-final.show{opacity:1;pointer-events:all}
+.trait-final-text{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,7.5vw,50px);font-weight:400;font-style:italic;color:var(--rose-deep);line-height:1.25;margin-bottom:44px}
+
+/* ════════════════════════
+   LETTER
+════════════════════════ */
+#ch-letter {
+  background: linear-gradient(155deg, var(--linen) 0%, var(--beige) 40%, #fce8ee 100%);
+}
+.envelope-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+.env-hint {
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  animation: hint-pulse 2.2s ease-in-out infinite;
+}
+
+/* ── Image-based envelope ── */
+.envelope {
+  width: min(320px, 86vw);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: transform 0.2s;
+  filter: drop-shadow(0 8px 24px rgba(100,70,30,0.2));
+}
+.envelope:active { transform: scale(0.97); }
+
+.env-img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  transition: opacity 0.4s;
+}
+/* fallback box shown if image not loaded yet */
+.env-fallback {
+  display: none;
+  width: 100%;
+  aspect-ratio: 1.65;
+  background: linear-gradient(160deg, #c8a84e, #a88830);
+  border-radius: 8px;
+  border: 2px solid #8a6820;
+}
+.env-img.missing { display: none; }
+.env-img.missing ~ .env-fallback { display: block; }
+
+/* letter peek — slides up from bottom of envelope when open */
+.env-letter-peek {
+  position: absolute;
+  bottom: 4px;
+  left: 12%; right: 12%;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.8s 0.45s cubic-bezier(0.34, 1.1, 0.64, 1);
+  z-index: 2;
+  border-radius: 3px 3px 0 0;
+}
+.envelope.open .env-letter-peek { height: 50px; }
+.env-peek-paper {
+  height: 60px;
+  background: linear-gradient(180deg, #fffef8, #faf4e4);
+  border: 1px solid #ddd0b0;
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 -4px 14px rgba(100,70,20,0.1);
+}
+
+/* wax seal on top of envelope image */
+.wax-seal {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #e87090, #c45c78 55%, #8a3050);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-style: italic; font-weight: 600;
+  color: white;
+  box-shadow: 0 3px 14px rgba(196,92,120,0.5), inset 0 1px 4px rgba(255,255,255,0.3);
+  z-index: 5;
+  transition: transform 0.5s, opacity 0.5s;
+}
+.wax-seal::after {
+  content: '';
+  position: absolute; inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(196,92,120,0.35);
+}
+.envelope.cracked .wax-seal {
+  transform: translateX(-50%) rotate(18deg) scale(0.88);
+  opacity: 0.7;
+}
+.envelope.open .wax-seal {
+  transform: translateX(-50%) scale(0);
+  opacity: 0;
+}
+
+/* ── Letter paper overlay ── */
+.letter-paper {
+  position: fixed; inset: 0; z-index: 200;
+  display: none;
+  align-items: flex-start; justify-content: center;
+  padding: 20px; padding-top: 48px;
+  background: rgba(249,244,238,0.96);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+}
+.letter-paper.show { display: flex; opacity: 1; pointer-events: all; }
+.paper-inner {
+  background: var(--ivory);
+  border-radius: 4px; border: 1px solid var(--beige-mid);
+  padding: 44px 32px 36px;
+  max-width: 460px; width: 100%;
+  position: relative; overflow: hidden;
+  box-shadow: 0 16px 56px rgba(100,70,50,0.1);
+  transform: translateY(60px) scale(0.96);
+  transition: transform 1.1s cubic-bezier(0.34,1.1,0.64,1);
+}
+.letter-paper.show .paper-inner { transform: translateY(0) scale(1); }
+.paper-ruled { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.paper-rule { height: 1px; background: rgba(232,221,208,0.65); margin-top: 32px; }
+.letter-greeting {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-style: italic; color: var(--text-soft);
+  margin-bottom: 20px; position: relative; z-index: 1;
+}
+.letter-poem {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16.5px,3.8vw,20px); font-weight: 300;
+  line-height: 2.1; color: var(--text); white-space: pre-line;
+  position: relative; z-index: 1; margin-bottom: 28px;
+}
+.letter-sig {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px; font-style: italic; color: var(--rose-deep);
+  text-align: right; position: relative; z-index: 1; margin-bottom: 32px;
+}
+.letter-next-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--rose-deep); color: white; border: none; border-radius: 60px;
+  padding: 16px 44px;
+  font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic;
+  cursor: pointer; width: 100%;
+  box-shadow: 0 4px 20px rgba(196,92,120,0.25);
+  transition: transform 0.15s;
+  position: relative; z-index: 1; user-select: none; margin-top: 8px;
+}
+.letter-next-btn:active { transform: scale(0.97); }
+
+/* ════════════════════════
+   PROPOSAL — dramatic
+════════════════════════ */
+#ch-proposal{background:linear-gradient(155deg,var(--linen) 0%,var(--cream) 50%,#fce8ee 100%);text-align:center}
+.proposal-wrapper{display:flex;flex-direction:column;align-items:center;opacity:0}
+/* Animate in slowly with words appearing one by one via child delays */
+.proposal-wrapper.reveal .proposal-float{animation:fade-up .9s .2s forwards}
+.proposal-wrapper.reveal .proposal-line1{animation:fade-up .9s .8s forwards}
+.proposal-wrapper.reveal .proposal-line2{animation:fade-up .9s 1.6s forwards}
+.proposal-wrapper.reveal .proposal-name{animation:fade-up .9s 2.3s forwards}
+.proposal-wrapper.reveal .yes-wrap{animation:fade-up .9s 3.2s forwards}
+.proposal-wrapper.reveal{opacity:1}
+.proposal-float{font-size:28px;margin-bottom:36px;display:block;opacity:0;animation:float-gentle 3.2s ease-in-out infinite}
+@keyframes float-gentle{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.proposal-line1,.proposal-line2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,9.5vw,60px);font-weight:300;line-height:1.2;color:var(--text);opacity:0}
+.proposal-line2 em{font-style:italic;color:var(--rose-deep)}
+.proposal-name{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,4.2vw,24px);font-style:italic;font-weight:300;color:var(--text-soft);margin:8px 0 50px;opacity:0}
+.yes-wrap{opacity:0}
+.yes-btn{
+  display:inline-flex;align-items:center;gap:11px;
+  background:var(--rose-deep);color:white;border:none;border-radius:80px;
+  padding:20px 54px;font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;
+  cursor:pointer;box-shadow:0 4px 32px rgba(196,92,120,.36);
+  animation:heartbeat 2.2s ease-in-out infinite;user-select:none
+}
+@keyframes heartbeat{0%,100%{transform:scale(1);box-shadow:0 4px 32px rgba(196,92,120,.36)}50%{transform:scale(1.04);box-shadow:0 8px 44px rgba(196,92,120,.55)}}
+.yes-btn:active{transform:scale(.95) !important;animation:none !important}
+.only-note{margin-top:14px;font-size:12px;font-weight:300;color:var(--text-light);font-style:italic;opacity:0;transition:opacity .5s}
+
+/* ════════════════════════
+   CELEBRATION
+════════════════════════ */
+#ch-celebration{
+  background:linear-gradient(155deg,var(--linen) 0%,#fdf8f5 40%,#fce8ee 100%);
+  justify-content:flex-start;padding-top:68px;overflow-y:auto;-webkit-overflow-scrolling:touch
+}
+.celeb-name{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,11vw,70px);font-weight:300;font-style:italic;color:var(--rose-deep);text-align:center;margin-bottom:6px;opacity:0;transform:translateY(28px);transition:all .8s cubic-bezier(0.34,1.2,.64,1)}
+.celeb-name.show{opacity:1;transform:translateY(0)}
+.celeb-sub{font-size:12px;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);text-align:center;margin-bottom:44px;opacity:0;transition:opacity .8s .35s}
+.celeb-sub.show{opacity:1}
+
+/* ── CERTIFICATE ── */
+.cert-wrap{
+  max-width:500px;width:100%;margin-bottom:48px;
+  opacity:0;transform:scale(.94);
+  transition:all .9s .5s cubic-bezier(0.34,1.1,.64,1);
+  position:relative
+}
+.cert-wrap.show{opacity:1;transform:scale(1)}
+/* Outer beige parchment */
+.cert-parchment{
+  background:linear-gradient(160deg,#fefcf4 0%,#fdf8ec 50%,#fefcf4 100%);
+  border-radius:8px;
+  padding:6px;
+  box-shadow:0 0 0 1px var(--beige-warm),0 8px 56px rgba(100,70,50,.14),inset 0 0 30px rgba(200,170,110,.06)
+}
+/* Gold double-line border */
+.cert-border-outer{
+  border:2px solid var(--gold);border-radius:5px;padding:3px
+}
+.cert-border-inner{
+  border:1px solid var(--gold-light);border-radius:3px;
+  background:linear-gradient(160deg,#fefcf4,#fffdf8 50%,#fefcf4);
+  padding:36px 28px;
+  position:relative;text-align:center;overflow:hidden
+}
+/* SVG corner ornaments — drawn in JS */
+.cert-corners{position:absolute;inset:0;pointer-events:none}
+/* shimmer sweep */
+.cert-border-inner::after{
+  content:'';position:absolute;top:0;left:-70%;width:40%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);
+  animation:cert-shimmer 4s 1.5s ease-in-out infinite;pointer-events:none
+}
+@keyframes cert-shimmer{0%{left:-70%}100%{left:140%}}
+
+.cert-eyebrow{font-size:9.5px;font-weight:500;letter-spacing:4.5px;text-transform:uppercase;color:var(--gold-deep);margin-bottom:16px}
+.cert-divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 14px}
+.cert-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(13px,3vw,16px);font-weight:300;color:var(--text-soft);margin-bottom:10px}
+.cert-names{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,6.5vw,38px);font-style:italic;font-weight:300;color:var(--rose-deep);margin:6px 0 12px;line-height:1.3}
+.cert-body{font-size:12.5px;font-weight:300;color:var(--text-soft);line-height:2;margin-bottom:18px;font-family:'Cormorant Garamond',serif;font-style:italic}
+.cert-date-line{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:18px}
+.cert-date{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--mauve)}
+.cert-seal-row{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
+.cert-sig-block{text-align:center;flex:1}
+.cert-sig-line{width:80px;height:1px;background:var(--beige-warm);margin:0 auto 5px}
+.cert-sig-text{font-family:'Cormorant Garamond',serif;font-size:11px;font-style:italic;color:var(--text-light)}
+.cert-seal-center{
+  width:58px;height:58px;background:radial-gradient(circle at 38% 38%,#d96882,var(--rose-deep));
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+  box-shadow:0 4px 16px rgba(196,92,120,.3),0 0 0 3px var(--gold-light),0 0 0 5px var(--gold)
+}
+
+/* Coupons */
+.coupons-title{font-family:'Cormorant Garamond',serif;font-size:clamp(23px,5.2vw,32px);font-style:italic;font-weight:300;color:var(--text);text-align:center;margin-bottom:6px;opacity:0;transition:opacity .6s}
+.coupons-title.show{opacity:1}
+.coupons-sub{font-size:11px;font-weight:300;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-light);text-align:center;margin-bottom:26px;opacity:0;transition:opacity .6s .2s}
+.coupons-sub.show{opacity:1}
+.coupon{max-width:460px;width:100%;margin-bottom:13px;opacity:0;transform:translateX(-22px);transition:all .44s}
+.coupon.show{opacity:1;transform:translateX(0)}
+.coupon-inner{background:var(--ivory);border:1.5px dashed var(--rose);border-radius:13px;display:flex;overflow:hidden;position:relative}
+.coupon-inner::before{content:'';position:absolute;left:66px;top:0;bottom:0;border-left:1.5px dashed var(--rose-soft)}
+.coupon-stub{width:66px;flex-shrink:0;background:var(--rose-deep);display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.8);padding:12px 0}
+.coupon-body{flex:1;padding:15px 16px 15px 24px}
+.coupon-label{font-size:9px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:5px}
+.coupon-text{font-family:'Cormorant Garamond',serif;font-size:clamp(14.5px,3.6vw,18.5px);font-style:italic;color:var(--text);line-height:1.4}
+.coupon-fine{font-size:10px;font-weight:300;color:var(--text-light);margin-top:4px}
+.coupon-stamp{position:absolute;top:10px;right:12px;width:30px;height:30px;border:1.5px solid var(--rose-soft);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;opacity:.5;transform:rotate(-18deg)}
+.coupon-num{font-family:'Cormorant Garamond',serif;font-size:10px;font-style:italic;color:var(--text-light);position:absolute;bottom:6px;right:10px}
+
+/* Eiffel closer */
+.eiffel-closer{max-width:460px;width:100%;margin-bottom:64px;opacity:0;transform:translateY(22px);transition:all .7s}
+.eiffel-closer.show{opacity:1;transform:translateY(0)}
+.eiffel-closer-img{width:100%;border-radius:18px;height:188px;background:linear-gradient(160deg,#0d0820,#1e1040 35%,#6b3f7e 65%,#e8854a 85%,#ffd700);position:relative;overflow:hidden;margin-bottom:18px}
+.eiffel-text{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,4.2vw,23px);font-style:italic;font-weight:300;color:var(--text);text-align:center;line-height:1.6}
+.eiffel-text em{color:var(--rose-deep)}
+
+/* ── CONFETTI ── */
+.conf-piece{position:fixed;pointer-events:none;z-index:9999;top:-12px;border-radius:2px;animation:conf-fall ease-in forwards}
+@keyframes conf-fall{0%{opacity:1}100%{opacity:0;transform:var(--cf-end)}}
+
+/* ── EASTER EGG ── */
+#easter-egg{position:fixed;inset:0;z-index:500;background:rgba(249,244,238,.97);display:flex;align-items:center;justify-content:center;padding:28px;opacity:0;pointer-events:none;transition:opacity .4s}
+#easter-egg.show{opacity:1;pointer-events:all}
+.egg-card{background:var(--ivory);border:1px solid var(--beige-mid);border-radius:26px;padding:44px 32px;max-width:360px;width:100%;text-align:center;box-shadow:0 16px 52px rgba(100,70,50,.1);position:relative;transform:scale(.78);transition:transform .44s cubic-bezier(0.34,1.56,.64,1)}
+#easter-egg.show .egg-card{transform:scale(1)}
+.egg-icon{font-size:46px;margin-bottom:14px;display:block}
+.egg-title{font-family:'Cormorant Garamond',serif;font-size:27px;font-style:italic;color:var(--rose-deep);margin-bottom:14px}
+.egg-body{font-size:15px;font-weight:300;color:var(--text-soft);line-height:1.8}
+.egg-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;color:var(--text-light);cursor:pointer}
+</style>
+</head>
+<body>
+<div id="petal-layer"></div>
+<div id="vine-layer" style="display:none;"></div>
+
+<svg id="vine-bl" style="position:fixed;bottom:0;left:0;width:190px;height:55vh;min-height:300px;pointer-events:none;z-index:999;overflow:visible;" viewBox="0 0 190 500" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 18,510 C 30,475 12,440 38,408 C 64,376 28,338 52,305 C 76,272 38,232 64,198 C 90,164 55,125 78,90 C 101,55 68,22 85,0" stroke="#6a9650" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 38,408 C 12,398 -4,380 8,362" stroke="#6a9650" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M 52,305 C 82,294 96,276 84,260" stroke="#6a9650" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M 64,198 C 36,188 20,170 30,154" stroke="#6a9650" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M 78,90 C 106,80 120,62 108,48" stroke="#6a9650" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <ellipse cx="10" cy="378" rx="15" ry="6" fill="#72b048" opacity=".72" transform="rotate(-38,10,378)"/>
+  <ellipse cx="52" cy="392" rx="13" ry="5.5" fill="#8acc60" opacity=".65" transform="rotate(22,52,392)"/>
+  <ellipse cx="82" cy="274" rx="14" ry="6" fill="#72b048" opacity=".7" transform="rotate(28,82,274)"/>
+  <ellipse cx="22" cy="288" rx="12" ry="5" fill="#8acc60" opacity=".62" transform="rotate(-22,22,288)"/>
+  <ellipse cx="24" cy="168" rx="14" ry="6" fill="#72b048" opacity=".72" transform="rotate(-42,24,168)"/>
+  <ellipse cx="80" cy="182" rx="12" ry="5" fill="#8acc60" opacity=".65" transform="rotate(18,80,182)"/>
+  <ellipse cx="106" cy="62" rx="13" ry="5.5" fill="#72b048" opacity=".68" transform="rotate(28,106,62)"/>
+  <line x1="24" y1="393" x2="10" y2="378" stroke="#4a7830" stroke-width=".9" opacity=".45"/>
+  <line x1="36" y1="290" x2="22" y2="275" stroke="#4a7830" stroke-width=".9" opacity=".45"/>
+  <line x1="38" y1="183" x2="24" y2="168" stroke="#4a7830" stroke-width=".9" opacity=".45"/>
+  <polygon points="34,422 24,414 36,410" fill="#4a6828" opacity=".65"/>
+  <polygon points="54,318 44,310 56,306" fill="#4a6828" opacity=".65"/>
+  <polygon points="66,210 56,202 68,198" fill="#4a6828" opacity=".65"/>
+  <polygon points="80,104 70,96 82,92" fill="#4a6828" opacity=".65"/>
+  <g transform="translate(84,259)" opacity=".8">
+    <ellipse cx="-5" cy="-2" rx="5" ry="3" fill="#e8a0b4" transform="rotate(-30,-5,-2)"/>
+    <ellipse cx="5" cy="-2" rx="5" ry="3" fill="#e8a0b4" transform="rotate(30,5,-2)"/>
+    <ellipse cx="0" cy="-6" rx="5" ry="3" fill="#d4889e"/>
+    <ellipse cx="0" cy="2.5" rx="5" ry="3" fill="#d4889e"/>
+    <circle cx="0" cy="-1.5" r="3.2" fill="#c07088"/>
+  </g>
+  <g transform="translate(108,47)" opacity=".75">
+    <ellipse cx="-4" cy="-2" rx="4.5" ry="2.8" fill="#e8a0b4" transform="rotate(-30,-4,-2)"/>
+    <ellipse cx="4" cy="-2" rx="4.5" ry="2.8" fill="#e8a0b4" transform="rotate(30,4,-2)"/>
+    <ellipse cx="0" cy="-5.5" rx="4.5" ry="2.8" fill="#d4889e"/>
+    <ellipse cx="0" cy="2" rx="4.5" ry="2.8" fill="#d4889e"/>
+    <circle cx="0" cy="-1.5" r="3" fill="#c07088"/>
+  </g>
+  <g transform="translate(34,160)" opacity=".65">
+    <ellipse cx="0" cy="0" rx="3" ry="5.5" fill="#d4889e"/>
+    <path d="M-1.5,-4 C-4,-7 0,-10 1.5,-4" fill="#6a9650"/>
+  </g>
+</svg>
+
+<svg id="vine-tr" style="position:fixed;top:0;right:0;width:190px;height:55vh;min-height:300px;pointer-events:none;z-index:999;overflow:visible;" viewBox="0 0 190 500" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 172,-10 C 160,25 178,60 152,92 C 126,124 162,162 138,195 C 114,228 152,268 126,302 C 100,336 135,375 112,410 C 89,445 122,478 105,500" stroke="#6a9650" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 152,92 C 178,102 194,120 182,138" stroke="#6a9650" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M 138,195 C 108,206 94,224 106,240" stroke="#6a9650" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M 126,302 C 154,312 170,330 160,346" stroke="#6a9650" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M 112,410 C 84,420 70,438 82,452" stroke="#6a9650" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <ellipse cx="180" cy="122" rx="15" ry="6" fill="#72b048" opacity=".72" transform="rotate(38,180,122)"/>
+  <ellipse cx="138" cy="108" rx="13" ry="5.5" fill="#8acc60" opacity=".65" transform="rotate(-22,138,108)"/>
+  <ellipse cx="108" cy="226" rx="14" ry="6" fill="#72b048" opacity=".7" transform="rotate(-28,108,226)"/>
+  <ellipse cx="168" cy="212" rx="12" ry="5" fill="#8acc60" opacity=".62" transform="rotate(22,168,212)"/>
+  <ellipse cx="166" cy="332" rx="14" ry="6" fill="#72b048" opacity=".72" transform="rotate(42,166,332)"/>
+  <ellipse cx="110" cy="318" rx="12" ry="5" fill="#8acc60" opacity=".65" transform="rotate(-18,110,318)"/>
+  <ellipse cx="84" cy="438" rx="13" ry="5.5" fill="#72b048" opacity=".68" transform="rotate(-28,84,438)"/>
+  <line x1="166" y1="107" x2="180" y2="122" stroke="#4a7830" stroke-width=".9" opacity=".45"/>
+  <line x1="154" y1="210" x2="168" y2="225" stroke="#4a7830" stroke-width=".9" opacity=".45"/>
+  <line x1="152" y1="317" x2="166" y2="332" stroke="#4a7830" stroke-width=".9" opacity=".45"/>
+  <polygon points="156,78 166,86 154,90" fill="#4a6828" opacity=".65"/>
+  <polygon points="136,182 146,190 134,194" fill="#4a6828" opacity=".65"/>
+  <polygon points="124,290 134,298 122,302" fill="#4a6828" opacity=".65"/>
+  <polygon points="110,396 120,404 108,408" fill="#4a6828" opacity=".65"/>
+  <g transform="translate(106,241)" opacity=".8">
+    <ellipse cx="-5" cy="-2" rx="5" ry="3" fill="#e8a0b4" transform="rotate(-30,-5,-2)"/>
+    <ellipse cx="5" cy="-2" rx="5" ry="3" fill="#e8a0b4" transform="rotate(30,5,-2)"/>
+    <ellipse cx="0" cy="-6" rx="5" ry="3" fill="#d4889e"/>
+    <ellipse cx="0" cy="2.5" rx="5" ry="3" fill="#d4889e"/>
+    <circle cx="0" cy="-1.5" r="3.2" fill="#c07088"/>
+  </g>
+  <g transform="translate(82,453)" opacity=".75">
+    <ellipse cx="-4" cy="-2" rx="4.5" ry="2.8" fill="#e8a0b4" transform="rotate(-30,-4,-2)"/>
+    <ellipse cx="4" cy="-2" rx="4.5" ry="2.8" fill="#e8a0b4" transform="rotate(30,4,-2)"/>
+    <ellipse cx="0" cy="-5.5" rx="4.5" ry="2.8" fill="#d4889e"/>
+    <ellipse cx="0" cy="2" rx="4.5" ry="2.8" fill="#d4889e"/>
+    <circle cx="0" cy="-1.5" r="3" fill="#c07088"/>
+  </g>
+  <g transform="translate(156,340)" opacity=".65">
+    <ellipse cx="0" cy="0" rx="3" ry="5.5" fill="#d4889e"/>
+    <path d="M-1.5,-4 C-4,-7 0,-10 1.5,-4" fill="#6a9650"/>
+  </g>
+</svg>
+<div id="ambient-layer"></div>
+<button id="music-btn" onclick="toggleMusic()" aria-label="Toggle music">🎵</button>
+<audio id="bg-music" loop><source src="music.mp3" type="audio/mpeg"></audio>
+<audio id="celeb-music"><source src="celebration.mp3" type="audio/mpeg"></audio>
+<div id="transition-overlay"></div>
+
+<div id="easter-egg">
+  <div class="egg-card">
+    <button class="egg-close" onclick="closeEgg()">✕</button>
+    <span class="egg-icon">🦄</span>
+    <h3 class="egg-title">You found it, Unicorn.</h3>
+    <p class="egg-body">I called you that before I even knew why.<br><br>Maybe I already knew you were something that only exists if you're lucky enough to find it.<br><br>I'm the luckiest person I know.</p>
+  </div>
+</div>
+
+<div id="chapters">
+
+<!-- CH1 -->
+<section class="chapter active" id="ch1">
+  <p class="opening-eyebrow">Something I made just for you</p>
+  <h1 class="opening-name"><span>Andrea</span> 🌸</h1>
+  <p class="opening-line">I made this entire website<br>because a text just wasn't enough.</p>
+  <button class="btn-primary" onclick="goTo('ch2')">Open it →</button>
+</section>
+
+<!-- CH2 -->
+<section class="chapter" id="ch2">
+  <div class="lock-card">
+    <h2 class="lock-title">Just making sure it's you</h2>
+    <p class="lock-sub">Enter our special date to unlock everything 🌸</p>
+    <span class="lock-icon-wrap" id="lock-icon">🔒</span>
+    <div class="lock-display">
+      <div class="lock-dot" id="d0"></div><div class="lock-dot" id="d1"></div>
+      <div class="lock-dot" id="d2"></div><div class="lock-dot" id="d3"></div>
+    </div>
+    <div class="pin-grid">
+      <button class="pin-btn" onclick="pinPress(this,'1')">1</button>
+      <button class="pin-btn" onclick="pinPress(this,'2')">2</button>
+      <button class="pin-btn" onclick="pinPress(this,'3')">3</button>
+      <button class="pin-btn" onclick="pinPress(this,'4')">4</button>
+      <button class="pin-btn" onclick="pinPress(this,'5')">5</button>
+      <button class="pin-btn" onclick="pinPress(this,'6')">6</button>
+      <button class="pin-btn" onclick="pinPress(this,'7')">7</button>
+      <button class="pin-btn" onclick="pinPress(this,'8')">8</button>
+      <button class="pin-btn" onclick="pinPress(this,'9')">9</button>
+      <div class="pin-spacer"></div>
+      <button class="pin-btn" onclick="pinPress(this,'0')">0</button>
+      <button class="pin-delete" onclick="pinDelete()">⌫</button>
+    </div>
+    <p class="lock-message" id="lock-msg"></p>
+  </div>
+</section>
+
+<!-- CH3 STORY -->
+<section class="chapter" id="ch-story">
+  <div class="chapter-progress" id="story-progress"></div>
+  <div id="story-container" style="display:flex;flex-direction:column;align-items:center;width:100%;max-width:500px;"></div>
+</section>
+
+<!-- CH4 TRAITS -->
+<section class="chapter" id="ch-traits">
+  <p class="traits-intro" id="traits-intro">And then I started noticing things about you...</p>
+  <p class="trait-tap-hint" id="trait-hint">tap anywhere to continue</p>
+  <div class="trait-stage" id="trait-stage"></div>
+  <div class="trait-final" id="trait-final">
+    <p class="trait-final-text">I fell in love with<br>everything about you.</p>
+    <button class="btn-primary" id="traits-continue-btn" style="opacity:1;animation:none;">Keep going →</button>
+  </div>
+</section>
+
+<!-- CH5 LETTER -->
+<section class="chapter" id="ch-letter">
+  <div class="envelope-scene">
+    <p class="env-hint">tap to open</p>
+    <div class="envelope" id="envelope" onclick="openEnvelope()">
+      <img class="env-img" src="envelope.png" alt="envelope"
+           onerror="this.classList.add('missing')">
+      <div class="env-fallback"></div>
+      <div class="env-letter-peek"><div class="env-peek-paper"></div></div>
+      <div class="wax-seal" id="wax-seal">D</div>
+    </div>
+<div class="letter-paper" id="letter-paper">
+  <div class="paper-inner">
+    <div class="paper-ruled" id="paper-ruled"></div>
+    <p class="letter-greeting">My dearest Andrea,</p>
+    <p class="letter-poem" id="letter-poem">[ Your poem goes here, David. 🌸
+
+Write it and replace this placeholder.
+Every word you put here will be
+the most beautiful thing she reads. ]</p>
+    <p class="letter-sig">— David 🤍</p>
+    <button class="letter-next-btn" onclick="closeLetter()">Continue → </button>
+  </div>
+</div>
+
+<!-- CH6 PROPOSAL -->
+<section class="chapter" id="ch-proposal">
+  <div class="proposal-wrapper" id="proposal-wrapper">
+    <span class="proposal-float">🌸</span>
+    <h2 class="proposal-line1">Will you</h2>
+    <h2 class="proposal-line2"><em>marry me?</em></h2>
+    <p class="proposal-name">— Andrea Eliza</p>
+    <div class="yes-wrap">
+      <button class="yes-btn" id="yes-btn" onclick="celebrate()">Yes 💍</button>
+      <p class="only-note" id="only-note">(this is the only button, just so you know 🌸)</p>
+    </div>
+  </div>
+</section>
+
+<!-- CH7 CELEBRATION -->
+<section class="chapter" id="ch-celebration">
+  <h2 class="celeb-name" id="celeb-name">She said yes 💕</h2>
+  <p class="celeb-sub" id="celeb-sub">and the whole world celebrated</p>
+
+  <div class="cert-wrap" id="cert-wrap">
+    <div class="cert-parchment">
+      <div class="cert-border-outer">
+        <div class="cert-border-inner" id="cert-inner">
+          <svg class="cert-corners" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Corner flourishes -->
+            <g fill="none" stroke="#c8a96e" stroke-width="0.8" opacity="0.7">
+              <!-- TL -->
+              <path d="M2,12 Q2,2 12,2"/>
+              <path d="M2,18 Q2,2 18,2"/>
+              <circle cx="6" cy="6" r="2.5" fill="#c8a96e" opacity=".4"/>
+              <circle cx="10" cy="4" r="1" fill="#c8a96e" opacity=".5"/>
+              <circle cx="4" cy="10" r="1" fill="#c8a96e" opacity=".5"/>
+              <!-- TR -->
+              <path d="M98,12 Q98,2 88,2"/>
+              <path d="M98,18 Q98,2 82,2"/>
+              <circle cx="94" cy="6" r="2.5" fill="#c8a96e" opacity=".4"/>
+              <circle cx="90" cy="4" r="1" fill="#c8a96e" opacity=".5"/>
+              <circle cx="96" cy="10" r="1" fill="#c8a96e" opacity=".5"/>
+              <!-- BL -->
+              <path d="M2,88 Q2,98 12,98"/>
+              <path d="M2,82 Q2,98 18,98"/>
+              <circle cx="6" cy="94" r="2.5" fill="#c8a96e" opacity=".4"/>
+              <circle cx="10" cy="96" r="1" fill="#c8a96e" opacity=".5"/>
+              <circle cx="4" cy="90" r="1" fill="#c8a96e" opacity=".5"/>
+              <!-- BR -->
+              <path d="M98,88 Q98,98 88,98"/>
+              <path d="M98,82 Q98,98 82,98"/>
+              <circle cx="94" cy="94" r="2.5" fill="#c8a96e" opacity=".4"/>
+              <circle cx="90" cy="96" r="1" fill="#c8a96e" opacity=".5"/>
+              <circle cx="96" cy="90" r="1" fill="#c8a96e" opacity=".5"/>
+              <!-- side flourishes -->
+              <path d="M50,2 Q53,5 50,8 Q47,5 50,2" fill="#c8a96e" opacity=".35" stroke="none"/>
+              <path d="M50,92 Q53,95 50,98 Q47,95 50,92" fill="#c8a96e" opacity=".35" stroke="none"/>
+            </g>
+          </svg>
+          <p class="cert-eyebrow">Certificate of Love</p>
+          <div class="cert-divider"></div>
+          <p class="cert-heading">This is to declare that</p>
+          <p class="cert-names">David Tudor<br>&amp; Andrea Eliza</p>
+          <div class="cert-divider"></div>
+          <p class="cert-body">are infinitely, irrevocably, and joyfully in love —<br>and have chosen each other on this day<br>and every day that follows.</p>
+          <div class="cert-date-line">
+            <div class="cert-divider" style="width:30px;margin:0"></div>
+            <p class="cert-date" id="cert-date"></p>
+            <div class="cert-divider" style="width:30px;margin:0"></div>
+          </div>
+          <div class="cert-seal-row">
+            <div class="cert-sig-block">
+              <div class="cert-sig-line"></div>
+              <p class="cert-sig-text">David Tudor</p>
+            </div>
+            <div class="cert-seal-center">💕</div>
+            <div class="cert-sig-block">
+              <div class="cert-sig-line"></div>
+              <p class="cert-sig-text">Andrea Eliza</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="coupons-title" id="coupons-title">A few gifts for my wife</h3>
+  <p class="coupons-sub" id="coupons-sub">wife powers — valid forever</p>
+  <div id="coupons-wrap" style="width:100%;max-width:460px;display:flex;flex-direction:column;align-items:center;"></div>
+  <div class="eiffel-closer" id="eiffel-closer">
+    <div class="eiffel-closer-img">
+      <svg viewBox="0 0 460 188" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0;">
+        <circle cx="370" cy="22" r="11" fill="#ffd700" opacity=".88"/><circle cx="377" cy="18" r="9" fill="#2d1f50" opacity=".8"/>
+        <circle cx="38" cy="18" r="1.2" fill="white" opacity=".8"/><circle cx="85" cy="42" r="1" fill="white" opacity=".6"/>
+        <circle cx="130" cy="12" r="1.2" fill="white" opacity=".9"/><circle cx="195" cy="28" r="1" fill="white" opacity=".7"/>
+        <circle cx="290" cy="16" r="1.2" fill="white" opacity=".8"/><circle cx="415" cy="36" r="1" fill="white" opacity=".5"/>
+        <rect x="175" y="150" width="110" height="5" rx="2" fill="#c8a050" opacity=".9"/>
+        <polygon points="192,155 205,98 214,98 200,155" fill="#c8a050"/>
+        <polygon points="283,155 270,98 261,98 275,155" fill="#b89040"/>
+        <path d="M192,155 Q206,130 205,98" fill="none" stroke="#c8a050" stroke-width="1.5" opacity=".5"/>
+        <path d="M283,155 Q269,130 270,98" fill="none" stroke="#c8a050" stroke-width="1.5" opacity=".5"/>
+        <polygon points="205,98 214,98 224,65 228,65" fill="#c8a050"/>
+        <polygon points="270,98 261,98 251,65 247,65" fill="#b89040"/>
+        <rect x="207" y="94" width="61" height="4" rx="1" fill="#c8a050"/>
+        <polygon points="217,65 224,65 228,36 232,36" fill="#c8a050"/>
+        <polygon points="258,65 251,65 247,36 243,36" fill="#b89040"/>
+        <polygon points="227,36 233,36 230,10" fill="#ffd700" opacity=".9"/>
+        <circle cx="230" cy="10" r="3.5" fill="#ffd700"/>
+        <circle cx="230" cy="10" r="9" fill="none" stroke="#ffd700" stroke-width="1" opacity=".3"><animate attributeName="r" values="9;18" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".3;0" dur="2s" repeatCount="indefinite"/></circle>
+        <circle cx="207" cy="98" r="2" fill="#ffd700" opacity=".8"/><circle cx="268" cy="98" r="2" fill="#ffd700" opacity=".8"/>
+        <circle cx="192" cy="155" r="2" fill="#ffd700" opacity=".6"/><circle cx="283" cy="155" r="2" fill="#ffd700" opacity=".6"/>
+        <rect x="0" y="142" width="130" height="46" fill="#0d0820" opacity=".75"/>
+        <rect x="18" y="132" width="22" height="10" fill="#0d0820" opacity=".85"/>
+        <rect x="50" y="127" width="16" height="15" fill="#0d0820" opacity=".85"/>
+        <rect x="78" y="135" width="26" height="7" fill="#0d0820" opacity=".85"/>
+        <rect x="330" y="142" width="130" height="46" fill="#0d0820" opacity=".75"/>
+        <rect x="342" y="132" width="22" height="10" fill="#0d0820" opacity=".85"/>
+        <rect x="374" y="125" width="16" height="17" fill="#0d0820" opacity=".85"/>
+        <rect x="400" y="135" width="26" height="7" fill="#0d0820" opacity=".85"/>
+        <rect x="20" y="135" width="3" height="3" fill="#ffd700" opacity=".45"/>
+        <rect x="52" y="130" width="3" height="3" fill="#ffd700" opacity=".45"/>
+        <rect x="376" y="129" width="3" height="3" fill="#ffd700" opacity=".45"/>
+      </svg>
+    </div>
+    <p class="eiffel-text">Can't wait to see this with you, <em>Unicorn.</em><br>See you there. 🗼</p>
+  </div>
+</section>
+</div>
+
+<script>
+// ════════════════════════════
+// AUDIO ENGINE
+// ════════════════════════════
+let audioCtx=null;
+function getCtx(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();return audioCtx}
+function tone(freq,type,dur,vol,delay){
+  try{const c=getCtx(),o=c.createOscillator(),g=c.createGain();
+  o.connect(g);g.connect(c.destination);o.type=type||'sine';o.frequency.value=freq;
+  const t=c.currentTime+(delay||0);g.gain.setValueAtTime(vol||.15,t);
+  g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.start(t);o.stop(t+dur)}catch(e){}
+}
+// Noise burst for paper rustle
+function paperRustle(){
+  try{
+    const c=getCtx(),buf=c.createBuffer(1,c.sampleRate*.4,c.sampleRate);
+    const d=buf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*.06;
+    const src=c.createBufferSource(),g=c.createGain(),filt=c.createBiquadFilter();
+    filt.type='bandpass';filt.frequency.value=3000;filt.Q.value=0.6;
+    src.buffer=buf;src.connect(filt);filt.connect(g);g.connect(c.destination);
+    g.gain.setValueAtTime(.6,c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+.4);
+    src.start();
+  }catch(e){}
+}
+const snd={
+  tap:    ()=>tone(680,'sine',.07,.12),
+  wrong:  ()=>{tone(200,'sawtooth',.22,.11);tone(160,'sawtooth',.18,.1,.1)},
+  unlock: ()=>[523,659,784,1047].forEach((f,i)=>tone(f,'sine',.16,.13,i*.09)),
+  pop:    ()=>tone(900,'sine',.07,.1),
+  trait:  ()=>tone(540+Math.random()*440,'sine',.09,.09),
+  turn:   ()=>{tone(440,'sine',.1,.09);tone(560,'sine',.08,.07,.07)},
+  conf:   ()=>[820,1020,1220,940,1120].forEach((f,i)=>tone(f,'sine',.1,.09,i*.05)),
+  yes:    ()=>[523,659,784,1047,1319].forEach((f,i)=>tone(f,'sine',.2,.15,i*.1)),
+  crack:  ()=>{tone(300,'sawtooth',.05,.08);tone(250,'sawtooth',.04,.07,.06)},
+  paper:  ()=>paperRustle(),
+};
+
+// ════════════════════════════
+// MUSIC
+// ════════════════════════════
+let musicOn=false;
+const bgMusic=document.getElementById('bg-music'),celebMusic=document.getElementById('celeb-music');
+function toggleMusic(){
+  const btn=document.getElementById('music-btn');
+  if(!musicOn){bgMusic.volume=.38;bgMusic.play().catch(()=>{});btn.classList.add('playing');btn.classList.remove('muted');musicOn=true}
+  else{bgMusic.pause();btn.classList.remove('playing');btn.classList.add('muted');musicOn=false}
+}
+
+// ════════════════════════════
+// PETALS
+// ════════════════════════════
+(()=>{
+  const layer=document.getElementById('petal-layer');
+  const cols=['#f2a7b8','#fce8ee','#f9dde7','#e8b4c0','#fdf0f4','#f5c8d5','#ede4d6','#e8ddd0'];
+  for(let i=0;i<26;i++){
+    const p=document.createElement('div');p.className='petal';
+    p.style.cssText=`left:${Math.random()*106}%;width:${7+Math.random()*9}px;height:${9+Math.random()*10}px;background:${cols[Math.floor(Math.random()*cols.length)]};animation-duration:${10+Math.random()*14}s;animation-delay:${Math.random()*18}s;transform:rotate(${Math.random()*360}deg);`;
+    layer.appendChild(p);
+  }
+})();
+
+// ════════════════════════════
+// AMBIENT FLOATERS per chapter
+// ════════════════════════════
+const ambientConfig={
+  ch1:        ['🌸','✨','💕','🌿','🤍'],
+  ch2:        ['⭐','✨','🔑','💫','🌟'],
+  'ch-story': ['🌙','💌','✨','🌿','🕯️'],
+  'ch-traits':['💕','🌸','✨','🌷','💫'],
+  'ch-letter':['🕯️','🌿','💌','✨','🌸'],
+  'ch-proposal':['🌸','💍','✨','💕','🌷'],
+  'ch-celebration':['🎊','✨','💕','🌸','💍'],
+};
+function spawnAmbient(chapterId){
+  const layer=document.getElementById('ambient-layer');layer.innerHTML='';
+  const emojis=ambientConfig[chapterId]||ambientConfig.ch1;
+  for(let i=0;i<8;i++){
+    const el=document.createElement('div');el.className='amb-float';
+    el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    el.style.cssText=`left:${5+Math.random()*90}%;top:${10+Math.random()*80}%;font-size:${10+Math.random()*10}px;animation-duration:${6+Math.random()*8}s;animation-delay:${Math.random()*6}s;opacity:0;`;
+    layer.appendChild(el);
+  }
+}
+
+// ════════════════════════════
+// VINES — static, drawn once at start
+// ════════════════════════════
+function drawVines(chapterId){
+  // Vines are static SVG injected in HTML, nothing to do here
+}
+
+// ════════════════════════════
+// CHAPTER NAV
+// ════════════════════════════
+let currentChapter='ch1',transitioning=false;
+function goTo(id){
+  if(transitioning||id===currentChapter)return;
+  transitioning=true;snd.turn();
+  const ov=document.getElementById('transition-overlay');ov.classList.add('show');
+  setTimeout(()=>{
+    document.getElementById(currentChapter).classList.remove('active');
+    const next=document.getElementById(id);next.classList.add('active');next.scrollTop=0;
+    currentChapter=id;ov.classList.remove('show');transitioning=false;
+    drawVines(id);spawnAmbient(id);
+    if(id==='ch-story'){storyIndex=0;renderStoryCard(0)}
+    if(id==='ch-traits')initTraits();
+    if(id==='ch-letter')initLetter();
+    if(id==='ch-proposal')initProposal();
+  },360);
+}
+drawVines('ch1');spawnAmbient('ch1');
+
+// ════════════════════════════
+// PIN LOCK
+// ════════════════════════════
+let pinValue='',pinLocked=false;
+const PIN='2606';
+function pinPress(btn,num){
+  if(pinValue.length>=4||pinLocked)return;snd.tap();
+  const r=document.createElement('span');r.className='pin-ripple';
+  const s=Math.max(btn.offsetWidth,btn.offsetHeight);
+  r.style.cssText=`width:${s}px;height:${s}px;left:${btn.offsetWidth/2-s/2}px;top:${btn.offsetHeight/2-s/2}px;`;
+  btn.appendChild(r);setTimeout(()=>r.remove(),600);
+  pinValue+=num;updateDots();if(pinValue.length===4){pinLocked=true;setTimeout(checkPin,220)}
+}
+function pinDelete(){if(pinLocked)return;snd.tap();pinValue=pinValue.slice(0,-1);updateDots();document.getElementById('lock-msg').textContent=''}
+function updateDots(){for(let i=0;i<4;i++)document.getElementById('d'+i).classList.toggle('filled',i<pinValue.length)}
+function checkPin(){
+  const icon=document.getElementById('lock-icon'),msg=document.getElementById('lock-msg'),dots=document.querySelector('.lock-display');
+  if(pinValue===PIN){
+    snd.unlock();icon.textContent='🔓';icon.style.animation='lock-unlock .7s ease forwards';msg.textContent='There you are. 🌸';
+    setTimeout(()=>goTo('ch-story'),1300);
+  }else{
+    snd.wrong();dots.style.animation='lock-shake .5s ease';dots.addEventListener('animationend',()=>{dots.style.animation=''},{ once:true});
+    msg.textContent="That's not it, try again 💕";
+    setTimeout(()=>{pinValue='';pinLocked=false;updateDots()},650);
+  }
+}
+
+// ════════════════════════════
+// STORY CARDS
+// ════════════════════════════
+const storyCards=[
+  {icon:'🦄',num:'Chapter one',title:'When I first met you',
+   body:`I honestly thought you were just a bubbly, cute girl in the group. Sweet, yes — but so sweet I got suspicious. People who are that nice are usually performing it.\n\nI was wrong about you from the very first second.\n\nBut before I even knew any of that, I gave you a nickname. <em>Unicorn.</em> I don't even remember exactly why. Maybe something about you already felt rare.`},
+  {icon:'🎨',num:'Chapter two',title:'When I noticed you',
+   body:`I heard you were hospitalised through a mutual friend. We barely even talked — but I reached out anyway. I'm not sure what made me do it.\n\nAnd then I made you a wallpaper. Your favourite artist. You had no wallpaper and I just... wanted to make you happy.\n\nIt was a small thing. But it was the first time I did something for you with no reason except that I wanted to.`},
+  {icon:'🌙',num:'Chapter three',title:'When you stayed',
+   body:`I was going through the worst period of my life. I wasn't talking to anyone. If someone didn't reach out first, I just disappeared.\n\nYou reached out. Every day.\n\nI was cold. Short replies. But you kept going. You kept talking to me and telling me about your life like it was the most natural thing.\n\nAnd slowly, without me even realising it — <em>you made me warm again.</em>`},
+  {icon:'💌',num:'Chapter four',title:'When everything shifted',
+   body:`I started flirting with you without even realising what it was leading to. I didn't want a relationship. I kept telling myself that.\n\nThen on <em>March 11th</em>, after some very cute conversations, you told me you had a crush on me.\n\nI told you I felt the same.\n\nYou said you had an unhealthy obsession with me. You were so excited about our future. And I just smiled — for the first time in a long time.`},
+  {icon:'✨',num:'Chapter five',title:'The moments I keep',
+   body:`Hours of talking about everything and nothing. Gossiping together. Playing Roblox. Planning a future that felt both impossibly far and completely real.\n\nEvery time I get a notification from you, I get this stupid smile I can't stop.\n\nSometimes I burst with everything I want to give you and it all just becomes a wall of lovely things I send you at once. You never seem to mind.\n\n<em>Every single moment with you feels like a good one.</em>`},
+  {icon:'🗼',num:'Chapter six',title:'The distance',
+   body:`This part is hard. I won't pretend it isn't.\n\nBut I think of it like this — we're growing up separately, like best friends, until the day we finally get to become lovers in the same place.\n\nAnd I know exactly where that day happens.\n\nYou told your parents you want your first kiss near the Eiffel Tower when its lights are on.\n\n<em>I made you a promise.</em>`,eiffel:true},
+];
+let storyIndex=0;
+function renderStoryCard(idx){
+  const c=storyCards[idx];
+  const container=document.getElementById('story-container');container.innerHTML='';
+  const prog=document.getElementById('story-progress');prog.innerHTML='';
+  storyCards.forEach((_,i)=>{const d=document.createElement('div');d.className='prog-dot'+(i<idx?' done':i===idx?' active':'');prog.appendChild(d)});
+  const card=document.createElement('div');card.className='story-card';
+  card.style.cssText='opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s;';
+  const eiffelHTML=c.eiffel?`<div class="eiffel-img">
+    <svg viewBox="0 0 400 165" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;">
+      <circle cx="340" cy="22" r="10" fill="#ffd700" opacity=".88"/><circle cx="347" cy="18" r="8" fill="#2d1f50" opacity=".8"/>
+      <circle cx="35" cy="16" r="1" fill="white" opacity=".8"/><circle cx="75" cy="38" r="1.2" fill="white" opacity=".6"/><circle cx="115" cy="10" r="1" fill="white" opacity=".9"/>
+      <rect x="155" y="138" width="90" height="4" rx="2" fill="#c8a050" opacity=".9"/>
+      <polygon points="170,142 182,88 190,88 178,142" fill="#c8a050"/>
+      <polygon points="230,142 218,88 210,88 222,142" fill="#b89040"/>
+      <path d="M170,142 Q183,118 182,88" fill="none" stroke="#c8a050" stroke-width="1.5" opacity=".5"/>
+      <path d="M230,142 Q217,118 218,88" fill="none" stroke="#c8a050" stroke-width="1.5" opacity=".5"/>
+      <polygon points="182,88 190,88 198,56 202,56" fill="#c8a050"/>
+      <polygon points="218,88 210,88 202,56 198,56" fill="#b89040"/>
+      <rect x="184" y="84" width="32" height="3" rx="1" fill="#c8a050"/>
+      <polygon points="192,56 198,56 200,28 202,28" fill="#c8a050"/>
+      <polygon points="208,56 202,56 200,28 198,28" fill="#b89040"/>
+      <polygon points="198,28 202,28 200,6" fill="#ffd700" opacity=".9"/>
+      <circle cx="200" cy="6" r="3" fill="#ffd700"/>
+      <circle cx="200" cy="6" r="9" fill="none" stroke="#ffd700" stroke-width="1" opacity=".3"><animate attributeName="r" values="9;18" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".3;0" dur="2s" repeatCount="indefinite"/></circle>
+      <circle cx="182" cy="88" r="1.5" fill="#ffd700" opacity=".8"/><circle cx="218" cy="88" r="1.5" fill="#ffd700" opacity=".8"/>
+      <circle cx="170" cy="142" r="1.5" fill="#ffd700" opacity=".6"/><circle cx="230" cy="142" r="1.5" fill="#ffd700" opacity=".6"/>
+      <rect x="0" y="130" width="110" height="35" fill="#0d0820" opacity=".75"/>
+      <rect x="14" y="120" width="20" height="10" fill="#0d0820" opacity=".85"/>
+      <rect x="290" y="130" width="110" height="35" fill="#0d0820" opacity=".75"/>
+      <rect x="310" y="120" width="18" height="10" fill="#0d0820" opacity=".85"/>
+    </svg>
+  </div>`:'';
+  const isLast=idx===storyCards.length-1;
+  card.innerHTML=`<span class="card-icon"${idx===0?' id="unicorn-tap"':''}>${c.icon}</span><span class="card-num">${c.num}</span><h3 class="card-title">${c.title}</h3><p class="card-body">${c.body.replace(/\n/g,'<br>')}</p>${eiffelHTML}<span class="card-counter">${idx+1} of ${storyCards.length}</span>`;
+  const btn=document.createElement('button');btn.className='btn-next';btn.innerHTML=`${isLast?'Continue':'Next'} <span class="arr">→</span>`;
+  btn.onclick=()=>{snd.turn();isLast?goTo('ch-traits'):(storyIndex++,renderStoryCard(storyIndex))};
+  container.appendChild(card);container.appendChild(btn);
+  requestAnimationFrame(()=>setTimeout(()=>{card.style.opacity='1';card.style.transform='translateY(0)'},40));
+  if(idx===0)setupEasterEgg();
+}
+
+// ════════════════════════════
+// TRAITS — one at a time, center screen, growing
+// ════════════════════════════
+const traits=[
+  {text:'The way you express yourself.',                                                          size:'xs'},
+  {text:'Your bubbly energy that fills every room.',                                              size:'sm'},
+  {text:'How funny you are without even trying.',                                                 size:'sm'},
+  {text:'The way you always find the positive side of everything.',                               size:'md'},
+  {text:'How deeply you care for everyone you love.',                                             size:'md'},
+  {text:'Your style. Your eye for beauty. You were made to dress the world.',                     size:'lg'},
+  {text:'Your face. Your forehead — please stop worrying about it. I just want to kiss it.',      size:'lg'},
+  {text:'How every scary thing feels easy the moment I tell you about it.',                       size:'xl'},
+  {text:'How you loved me on my worst days and never asked for anything back.',                   size:'xl'},
+];
+let traitStep=0,traitStarted=false,traitDone=false,currentTraitEl=null;
+
+function initTraits(){
+  if(currentTraitEl){currentTraitEl.remove();currentTraitEl=null;}
+  traitStep=0;traitStarted=false;traitDone=false;
+  document.getElementById('trait-stage').innerHTML='';
+  document.getElementById('traits-intro').style.opacity='0';
+  document.getElementById('traits-intro').classList.remove('show');
+  document.getElementById('trait-final').classList.remove('show');
+  const hint=document.getElementById('trait-hint');
+  hint.style.opacity='1';hint.textContent='tap anywhere to continue';
+  setTimeout(()=>document.getElementById('traits-intro').classList.add('show'),300);
+  const sec=document.getElementById('ch-traits');
+  sec.removeEventListener('click',traitHandler);
+  sec.addEventListener('click',traitHandler);
+  document.getElementById('traits-continue-btn').onclick=e=>{e.stopPropagation();snd.turn();goTo('ch-letter')};
+}
+
+function traitHandler(e){if(e.target.closest('#trait-final'))return;if(traitDone)return;traitTap()}
+
+function traitTap(){
+  if(traitDone)return;
+  if(!traitStarted){
+    traitStarted=true;
+    document.getElementById('traits-intro').style.opacity='0';
+    document.getElementById('trait-hint').textContent='keep tapping...';
+  }
+  if(traitStep<traits.length){
+    snd.trait();
+    const t=traits[traitStep];
+    // Fade out current
+    if(currentTraitEl){
+      currentTraitEl.classList.remove('show');
+      currentTraitEl.classList.add('hide');
+      const old=currentTraitEl;
+      setTimeout(()=>old.remove(),400);
+    }
+    // Create new one
+    const el=document.createElement('div');
+    el.className=`trait-single size-${t.size}`;
+    el.textContent=t.text;
+    document.getElementById('trait-stage').appendChild(el);
+    currentTraitEl=el;
+    requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('show')));
+    traitStep++;
+  }else{
+    // All done
+    traitDone=true;
+    document.getElementById('trait-hint').style.opacity='0';
+    if(currentTraitEl){currentTraitEl.classList.remove('show');currentTraitEl.classList.add('hide');}
+    miniConfetti();
+    setTimeout(()=>{
+      document.getElementById('trait-final').classList.add('show');
+      miniConfetti();snd.conf();
+    },450);
+  }
+}
+
+// ════════════════════════════
+// LETTER
+// ════════════════════════════
+let envTapped=false;
+function initLetter(){
+  const env=document.getElementById('envelope');
+  env.classList.remove('open','cracked');
+  document.getElementById('letter-paper').classList.remove('show');
+  envTapped=false;
+  const ruled=document.getElementById('paper-ruled');ruled.innerHTML='';
+  for(let i=0;i<22;i++){const l=document.createElement('div');l.className='paper-rule';ruled.appendChild(l)}
+}
+function openEnvelope(){
+  const env = document.getElementById('envelope');
+  if(env.classList.contains('open') || envTapped) return;
+  envTapped = true;
+  // crack seal
+  snd.crack();
+  env.classList.add('cracked');
+  // short pause then open
+  setTimeout(() => {
+    env.classList.add('open');
+    snd.paper();
+    // show letter paper after envelope animates
+    setTimeout(() => {
+      const lp = document.getElementById('letter-paper');
+      lp.style.display = 'flex';
+      lp.offsetHeight; // force reflow so CSS transition fires
+      lp.classList.add('show');
+    }, 850);
+  }, 350);
+}
+
+function closeLetter(){
+  const lp = document.getElementById('letter-paper');
+  lp.classList.remove('show');
+  setTimeout(() => {
+    lp.style.display = 'none';
+    goTo('ch-proposal');
+  }, 320);
+}
+function closeLetter(){
+  document.getElementById('letter-paper').classList.remove('show');
+  setTimeout(()=>goTo('ch-proposal'),300);
+}
+
+// ════════════════════════════
+// PROPOSAL — slow dramatic reveal
+// ════════════════════════════
+function initProposal(){
+  const wrapper=document.getElementById('proposal-wrapper');
+  wrapper.classList.remove('reveal');
+  // Reset opacity on children
+  wrapper.querySelectorAll('.proposal-float,.proposal-line1,.proposal-line2,.proposal-name,.yes-wrap').forEach(el=>{el.style.opacity='0';el.style.animation='none'});
+  // Short delay then trigger
+  setTimeout(()=>{
+    wrapper.classList.add('reveal');
+    wrapper.querySelectorAll('.proposal-float,.proposal-line1,.proposal-line2,.proposal-name,.yes-wrap').forEach(el=>{el.style.animation=''});
+  },200);
+}
+
+// Show hint on hover/touch
+const yesBtn=document.getElementById('yes-btn');
+yesBtn.addEventListener('mouseenter',()=>document.getElementById('only-note').style.opacity='1');
+yesBtn.addEventListener('touchstart',()=>document.getElementById('only-note').style.opacity='1',{passive:true});
+
+// ════════════════════════════
+// CELEBRATION
+// ════════════════════════════
+const coupons=[
+  {label:'Wife Coupon No. 001',text:'100 kisses in 24 hours',           fine:"No breaks. No negotiations. David's lips, your property.",num:'#001',stamp:'💋'},
+  {label:'Wife Coupon No. 002',text:'One full day of whatever you say', fine:'David does everything. No questions asked. No complaints allowed.',num:'#002',stamp:'👑'},
+  {label:'Wife Coupon No. 003',text:'Wife Power Override',               fine:'Cancels any plan David has made. Instantly. No explanation needed.',num:'#003',stamp:'⚡'},
+  {label:'Wife Coupon No. 004',text:'One surprise from David',           fine:'You just say the vibe. He handles absolutely everything else.',num:'#004',stamp:'🎁'},
+  
+  {label:'Wife Coupon No. 005',text:'Breakfast in bed',                  fine:"Redeemable once we're finally in the same place. He will make it cute.",num:'#005',stamp:'☀️'},
+  {label:'Wife Coupon No. 006',text:'One movie entirely of your choice', fine:"David watches with full enthusiasm. Even if it's 3 hours long.",num:'#006',stamp:'🎬'},
+  {label:'Wife Coupon No. 007',text:'"I was right" — instant win card', fine:"Use in any disagreement. David must immediately agree. (He was probably wrong anyway.)",num:'#007',stamp:'✨'},
+];
+
+function celebrate(){
+  snd.yes();bigConfetti();goTo('ch-celebration');
+  if(musicOn)bgMusic.pause();
+  setTimeout(()=>{celebMusic.volume=.46;celebMusic.play().catch(()=>{})},900);
+
+  document.getElementById('cert-date').textContent=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  setTimeout(()=>{document.getElementById('celeb-name').classList.add('show');snd.conf()},500);
+  setTimeout(()=>document.getElementById('celeb-sub').classList.add('show'),900);
+  setTimeout(()=>{
+    const cw=document.getElementById('cert-wrap');
+    cw.style.opacity='1';cw.style.transform='scale(1)';cw.classList.add('show');
+  },1200);
+  setTimeout(()=>document.getElementById('coupons-title').classList.add('show'),2000);
+  setTimeout(()=>document.getElementById('coupons-sub').classList.add('show'),2200);
+
+  const wrap=document.getElementById('coupons-wrap');wrap.innerHTML='';
+  coupons.forEach((c,i)=>{
+    const div=document.createElement('div');div.className='coupon';
+    div.innerHTML=`<div class="coupon-inner"><div class="coupon-stub">Wife Coupon</div><div class="coupon-body"><div class="coupon-label">${c.label}</div><div class="coupon-text">${c.text}</div><div class="coupon-fine">${c.fine}</div></div><span class="coupon-stamp">${c.stamp}</span><span class="coupon-num">${c.num}</span></div>`;
+    wrap.appendChild(div);
+    setTimeout(()=>{div.classList.add('show');snd.pop()},2300+i*270);
+  });
+  setTimeout(()=>document.getElementById('eiffel-closer').classList.add('show'),2300+coupons.length*270+400);
+  setTimeout(bigConfetti,2000);
+}
+
+function miniConfetti(){const cols=['#f2a7b8','#d4607a','#fce8ee','#c9a96e','#b57a8e','#f9dde7'];for(let i=0;i<36;i++)spawnConf(cols)}
+function bigConfetti(){const cols=['#f2a7b8','#d4607a','#fce8ee','#c9a96e','#b57a8e','#f9dde7','#e8a0b0','#fff','#ede4d6'];for(let i=0;i<140;i++)setTimeout(()=>spawnConf(cols),i*11)}
+function spawnConf(cols){
+  const c=document.createElement('div');c.className='conf-piece';const dur=2+Math.random()*2.2;
+  c.style.cssText=`left:${Math.random()*100}vw;width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation-duration:${dur}s;animation-delay:${Math.random()*.6}s;--cf-end:translateX(${(Math.random()-.5)*280}px) translateY(${window.innerHeight+60}px) rotate(${Math.random()*900*(Math.random()>.5?1:-1)}deg);`;
+  document.body.appendChild(c);setTimeout(()=>c.remove(),(dur+.8)*1000);
+}
+
+let eggTaps=0,eggTimer=null;
+function setupEasterEgg(){
+  const icon=document.getElementById('unicorn-tap');if(!icon)return;icon.style.cursor='pointer';
+  icon.addEventListener('click',e=>{e.stopPropagation();snd.pop();eggTaps++;clearTimeout(eggTimer);eggTimer=setTimeout(()=>{eggTaps=0},3000);if(eggTaps>=5){eggTaps=0;document.getElementById('easter-egg').classList.add('show');miniConfetti()}});
+}
+function closeEgg(){document.getElementById('easter-egg').classList.remove('show')}
+</script>
+</body>
+</html>
